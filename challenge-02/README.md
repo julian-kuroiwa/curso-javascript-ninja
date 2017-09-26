@@ -23,15 +23,15 @@ Crie uma função que adicione um valor à variável criada acima, e retorne a s
 Onde VALOR é o novo valor da variável.
 */
 function newValue() {
-    newVariable = "teste";
-    return newVariable;
+    newVariable = 50;
+    return "O valor da variável agora é " + newVariable;
 }
 
 // Invoque a função criada acima.
 newValue();
 
 // Qual o retorno da função? (Use comentários de bloco).
-?
+/* O valor da variável agora é 25 */
 
 /*
 Crie uma função com as seguintes características:
@@ -41,10 +41,10 @@ Crie uma função com as seguintes características:
 3. O retorno da função deve ser a multiplicação dos 3 argumentos, somando `2` ao resultado da multiplicação.
 */
 function fun(x,y,z) {
-    if(!x || !y || !z) {
-        return console.log("Preencha todos os valores corretamente!");
+    if(x === undefined || y === undefined || z === undefined) {
+        return "Preencha todos os valores corretamente!";
     } else {
-        return (x * y * z) + '2';
+        return (x * y * z) + 2;
     }
 }
 
@@ -58,7 +58,7 @@ fun(12,65)
 fun(56,76,32)
 
 // Qual o resultado da invocação acima? (Use comentários para mostrar o valor retornado).
-'1361922'
+136194
 
 /*
 Crie uma função com as seguintes características:
@@ -70,13 +70,13 @@ Crie uma função com as seguintes características:
 6. E ainda, se nenhuma das condições acima forem atendidas, retorne `null`.
 */
 function retorne(x,y,z) {
-    if((x != '' && !y && !z)) {
+    if(x !== undefined && y === undefined && z === undefined) {
         return x;
-    } else if (!z) {
+    } else if (x !== undefined && y !== undefined && z === undefined) {
         return x + y;
-    } else if(x != '' && y != '' & z != '') {
+    } else if(x !== undefined && y !== undefined && z !== undefined) {
         return (x + y)/z;
-    } else if(!x && !y && !z) {
+    } else if(x === undefined && y === undefined && z === undefined) {
         return false;
     } else {
         return null;
