@@ -187,11 +187,16 @@ pessoa.apresentacao = function() {
     if(pessoa.sexo === "Feminino") {
     sexo = "Olá, eu sou a ";
         
-    } else if(pessoa.idade === 1) {
+    } 
+    
+    if(pessoa.idade === 1) {
         idade = " ano, "; 
-    } else if (pessoa.caminhouQuantosMetros === 1) {
+    } 
+    
+    if (pessoa.caminhouQuantosMetros === 1) {
         metrosCaminhado = " metro!";
     }
+    
         return sexo + pessoa.nome + ", tenho " + pessoa.idade + idade + pessoa.altura + ", meu peso é " + pessoa.peso + " e, só hoje, eu já caminhei " + pessoa.caminhouQuantosMetros + metrosCaminhado;
 }
 
