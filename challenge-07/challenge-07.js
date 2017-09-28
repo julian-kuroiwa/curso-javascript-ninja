@@ -13,6 +13,7 @@ A função deverá retornar o array atualizado.
 */
 function addItem(arr, item) {
     arr.push(item);
+    return arr;
 }
 
 /*
@@ -55,10 +56,7 @@ console.log('Números pares entre 10 e 20:');
 var num = 10;
 
 while (num <= 20) {
-
-    if (num % 2 === 0) {
-        console.log(num);
-    }
+    num % 2 === 0 ? console.log(num) : '';
     num++;
 }
 
@@ -67,14 +65,11 @@ Na mesma ideia do exercício acima: mostre agora os números ímpares.
 */
 console.log('Números ímpares entre 10 e 20:');
 
-var num2 = 10;
+num = 10;
 
-while (num2 <= 20) {
-
-    if (num2 % 2 !== 0) {
-        console.log(num2);
-    }
-    num2++;
+while (num <= 20) {
+    num % 2 !== 0 ? console.log(num) : '';
+    num++;
 }
 
 /*
@@ -86,14 +81,10 @@ Só vamos mudar o range:
 console.log('Números pares entre 100 e 120:');
 
 for (var x = 100; x <= 120; x++) {
-    if (x % 2 === 0) {
-        console.log(x);
-    }
+    x % 2 === 0 ? console.log(x) : '';
 }
 
 console.log('Números ímpares entre 111 e 125:');
 for (var y = 111; y <= 125; y++) {
-    if (y % 2 !== 0) {
-        console.log(y);
-    }
+    y % 2 !== 0 ? console.log(y) : '';
 }
