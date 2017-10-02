@@ -59,21 +59,7 @@
 
     function isOperatorValid(operator) {
 
-        switch (operator) {
-            case '+':
-                break;
-            case '-':
-                break;
-            case '*':
-                break;
-            case '/':
-                break;
-            case '%':
-                break;
-            default:
-                return false;
-        }
-        return true;
+        return !!operation[operator];
     }
 
     /*
@@ -110,7 +96,6 @@
     */
 
     function showOperationMessage(operator, num1, num2) {
-        var result = operation[operator](num1, num2);
         return 'A operação ' + num1 + ' ' + operator + ' ' + num2 + ' =';
     }
 
@@ -162,12 +147,11 @@
     */
 
 
-    if (isOperatorValid(operationSignal)) {
+    if (sum) {
         number1 = 10;
         number2 = 5;
 
-        console.log(showOperationMessage(operationSignal, number1, number2));
-        console.log(sum(number1, number2));
+        console.log(showOperationMessage(operationSignal, number1, number2), sum(number1, number2));
 
     } else {
         console.log(showErrorMessage(operationSignal));
@@ -179,10 +163,57 @@
     "multiplication", "division" e "mod".
     */
 
+    operationSignal = "-";
     var subtraction = calculator(operationSignal);
+
+    if (subtraction) {
+        number1 = 10;
+        number2 = 5;
+
+        console.log(showOperationMessage(operationSignal, number1, number2), subtraction(number1, number2));
+
+    } else {
+        console.log(showErrorMessage(operationSignal));
+    }
+
+    operationSignal = "*";
     var multiplication = calculator(operationSignal);
+
+    if (multiplication) {
+        number1 = 10;
+        number2 = 5;
+
+        console.log(showOperationMessage(operationSignal, number1, number2), multiplication(number1, number2));
+
+    } else {
+        console.log(showErrorMessage(operationSignal));
+    }
+
+    operationSignal = "/";
     var division = calculator(operationSignal);
+
+    if (division) {
+        number1 = 10;
+        number2 = 5;
+
+        console.log(showOperationMessage(operationSignal, number1, number2), division(number1, number2));
+
+    } else {
+        console.log(showErrorMessage(operationSignal));
+    }
+
+    operationSignal = "%";
     var mod = calculator(operationSignal);
+
+    if (mod) {
+        number1 = 10;
+        number2 = 5;
+
+        console.log(showOperationMessage(operationSignal, number1, number2), mod(number1, number2));
+
+    } else {
+        console.log(showErrorMessage(operationSignal));
+    }
 
 
     /*
@@ -191,6 +222,16 @@
     */
 
     operationSignal = "a";
+    var invalid = calculator(operationSignal);
+    if (invalid) {
+        number1 = 10;
+        number2 = 5;
+
+        console.log(showOperationMessage(operationSignal, number1, number2), invalid(number1, number2));
+
+    } else {
+        console.log(showErrorMessage(operationSignal));
+    }
 
 
 })()
