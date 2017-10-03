@@ -12,6 +12,9 @@
 
     var once = false;
 
+    do {
+        console.log('Entrou ao menos uma vez!');
+    } while (once);
 
     /*
     Crie um objeto chamado `person`, que receba as seguintes propriedades:
@@ -54,7 +57,7 @@
 
     function moreThan(age) {
 
-        return person.age > age ? true : false;
+        return person.age > age;
     }
 
     console.log('The person has more than 25 years old?', moreThan(25));
@@ -88,9 +91,10 @@
     numbers = [];
 
     for (var num = 0; num <= 20; num++) {
-        if (num % 2 === 0) {
-            numbers.push(num);
+        if (num % 2 !== 0) {
+            continue;
         }
+        numbers.push(num);
     }
 
     console.log(numbers);
