@@ -81,12 +81,8 @@
     */
     console.log('\nNova idade das pessoas:');
 
-    julian.addAge(5);
-    josiane.addAge(10);
-    jose.addAge(25);
-
-    console.log(julian.getFullName() + " agora tem " + julian.getAge() + " anos.");
-    console.log(josiane.getFullName() + " agora tem " + josiane.getAge() + " anos.");
-    console.log(jose.getFullName() + " agora tem " + jose.getAge() + " anos.");
+    console.log(julian.getFullName() + " agora tem " + julian.addAge(5).getAge() + " anos.");
+    console.log(josiane.getFullName() + " agora tem " + josiane.addAge(-3).getAge() + " anos.");
+    console.log(jose.getFullName() + " agora tem " + jose.addAge(25).getAge() + " anos.");
 
 })();
