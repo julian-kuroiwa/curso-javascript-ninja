@@ -52,7 +52,7 @@
     */
     console.log('\nRegex para números somente no final das linhas:');
 
-    var numbersAtTheEnd = new RegExp('\\d+$', 'gm');
+    var numbersAtTheEnd = /\d+$/gm;
 
     console.log(numbersAtTheEnd);
 
@@ -95,15 +95,15 @@
 
     function hasClass(markup, cssClass) {
 
-        var classRegex = new RegExp(cssClass, 'gim');
+        var classRegex = new RegExp('class=[\\D](?:[\\w\\s]+)?' + cssClass + '(?:[\\w\\s]+)?[\\D]', 'gmi');
         return classRegex.test(markup);
 
     }
 
     var classes = ["container", "text", "date", "excerpt", "main"];
 
-    var map = classes.map(function(item) {
-        console.log(hasClass(markup, item) + " para a classe " + item);
+    classes.forEach(function(cssClass) {
+        console.log(hasClass(markup, cssClass) + " para a classe " + cssClass);
     });
 
 
