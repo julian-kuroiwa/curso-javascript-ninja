@@ -19,10 +19,7 @@
     Com a resposta, mostre um alert com a mensagem "Bem vindo [USERNAME]!"
     */
 
-    var username = prompt("Qual o seu nome?");
-
-    if (!username)
-        username = 'Desconhecido';
+    var username = prompt("Qual o seu nome?") || 'Desconhecido';
 
     alert("Bem vindo " + username + "!");
 
@@ -97,19 +94,22 @@
 
         event.preventDefault();
 
-        if ($inputUsername.value === "")
-            alert("Preencha o nome do usuário!");
-        else if ($inputEmail.value === "")
-            alert("Preencha o e-mail!");
-        else if ($message.value === "")
-            alert("Preencha a mensagem!");
-        else if (!isValidEmail($inputEmail.value))
-            alert("Entre com um e-mail válido!");
-        else
+        if (!$inputUsername.value)
+            return alert("Preencha o nome do usuário!");
+
+        if (!$inputEmail.value)
+            return alert("Preencha o e-mail!");
+
+        if (!isValidEmail($inputEmail.value))
+            return alert("Entre com um e-mail válido!");
+
+        if (!$message.value)
+            return alert("Preencha a mensagem!");
+
         if (confirm("Tem certeza que deseja enviar o formulário?"))
-            alert("Enviado com sucesso!");
-        else
-            alert("Não enviado.");
+            return alert("Enviado com sucesso!");
+
+        alert("Não enviado.");
 
     }, false);
 
@@ -141,7 +141,7 @@
     */
 
     function isValidEmail(email) {
-        var regex = new RegExp('^([\\w\.\+]+)@\\w+\.\\w{3}\.?(?:\\w{2})?', 'g');
+        var regex = new RegExp('^[\\w\.\+]+@\\w+\.\\w{2,}\.?(?:\\w{2})?$', 'g');
         return regex.test(email);
     }
 
