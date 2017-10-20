@@ -21,27 +21,26 @@ dado ao elemento HTML deve definir o que o elemento é ou o que ele faz.
     var $start = doc.querySelector("[data-js='start']");
     var $stop = doc.querySelector("[data-js='stop']");
     var $reset = doc.querySelector("[data-js='reset']");
-    var counter = $input.value;
+    var interval;
 
-    $start.addEventListener('click', function() {
-        startChrono();
-
-    }, false);
-
-    $stop.addEventListener('click', function() {
-        clearInterval(counter);
-    }, false);
-
-    $reset.addEventListener('click', function() {
-        clearInterval(counter);
-        counter = 0;
-        $input.value = counter;
-    }, false);
+    $start.addEventListener('click', startChrono, false);
+    $stop.addEventListener('click', stopChrono, false);
+    $reset.addEventListener('click', resetChrono, false);
 
     function startChrono() {
 
-        $input.value = counter++;
-        setTimeout(startChrono, 1000);
+        $input.value = +$input.value + 1;
+        interval = setTimeout(startChrono, 1000);
+    }
+
+    function stopChrono() {
+        clearInterval(interval);
+
+    }
+
+    function resetChrono() {
+        stopChrono();
+        $input.value = 0;
     }
 
 
