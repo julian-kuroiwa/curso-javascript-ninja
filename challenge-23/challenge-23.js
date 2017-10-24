@@ -1,4 +1,6 @@
-/*
+(function(win, doc) {
+
+    /*
 Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
 As regras são:
 
@@ -23,3 +25,52 @@ multiplicação (x), então no input deve aparecer "1+2x".
 input;
 - Ao pressionar o botão "CE", o input deve ficar zerado.
 */
+
+
+    'use strict';
+
+
+    var $num = doc.querySelectorAll('button[data-calc="num"]');
+    var $calc = doc.querySelector('input[data-calc="calc"]');
+    var $signal = doc.querySelectorAll('button[data-calc="signal"]');
+    var $equal = doc.querySelector('button[data-calc="="]');
+    var $cleanInput = doc.querySelector('button[data-calc="CE"]');
+
+    $equal.addEventListener('click', calcValue, false);
+    $cleanInput.addEventListener('click', cleanCalc, false);
+
+    numbers();
+    signals();
+
+    function numbers() {
+        for (var i = 0; i < $num.length; i++) {
+            $num[i].addEventListener('click', function() {
+                if ($calc.value === "0")
+                    $calc.value = "";
+                return $calc.value += this.value;
+            }, false);
+        }
+    }
+
+    function signals() {
+        var regex = '/[+\-*\/]$/';
+
+        for (var x = 0; x < $signal.length; x++) {
+            $signal[x].addEventListener('click', function() {
+                if ($calc.value !== "0")
+                    return $calc.value += this.value;
+            }, false);
+        }
+    }
+
+    function calcValue() {
+        return $calc.value = eval($calc.value);
+    }
+
+
+    function cleanCalc() {
+        $calc.value = 0;
+    }
+
+
+})(window, document);
