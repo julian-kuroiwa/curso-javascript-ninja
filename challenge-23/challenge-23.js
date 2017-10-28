@@ -32,44 +32,80 @@ input;
 
     var $num = doc.querySelectorAll('button[data-calc="num"]');
     var $calc = doc.querySelector('input[data-calc="calc"]');
-    var $signal = doc.querySelectorAll('button[data-calc="signal"]');
+    var $operator = doc.querySelectorAll('button[data-calc="operator"]');
     var $equal = doc.querySelector('button[data-calc="="]');
     var $cleanInput = doc.querySelector('button[data-calc="CE"]');
 
     $equal.addEventListener('click', calcValue, false);
     $cleanInput.addEventListener('click', cleanCalc, false);
 
-    numbers();
-    signals();
+    Array.prototype.forEach.call($num, function(button) {
+        button.addEventListener('click', getClickNumber, false);
+    });
 
-    function numbers() {
-        for (var i = 0; i < $num.length; i++) {
-            $num[i].addEventListener('click', function() {
-                if ($calc.value === "0")
-                    $calc.value = "";
-                return $calc.value += this.value;
-            }, false);
-        }
+    Array.prototype.forEach.call($operator, function(button) {
+        button.addEventListener('click', getClickOperator, false);
+    });
+
+    function getClickNumber() {
+        if ($calc.value === 0)
+            $calc.value = "";
+        return $calc.value += this.value;
+
     }
 
-    function signals() {
-        var regex = '/[+\-*\/]$/';
+    function getClickOperator() {
+        if ($calc.value !== "0")
+            return $calc.value += this.value;
+        if (isLastItemOperator($calc.value))
+            return $calc.value += this.value;
 
-        for (var x = 0; x < $signal.length; x++) {
-            $signal[x].addEventListener('click', function() {
-                if ($calc.value !== "0")
-                    return $calc.value += this.value;
-            }, false);
-        }
     }
 
     function calcValue() {
-        return $calc.value = eval($calc.value);
+
+        $calc.value = removeIfItIsAnOperator($calc.value);
+        var allVal = $calc.value.match(/\d+[+*\/-]?/g);
+
+        $calc.value = allVal.reduce(function(accumulated, actual) {
+            var firstVal = accumulated.slice(0, -1);
+            var operator = accumulated.split('').pop();
+            var lastVal = removeIfItIsAnOperator(actual);
+            var lastOperator = isLastItemOperator(actual) ? actual.split('').pop() : '';
+            switch (operator) {
+                case '+':
+                    return (Number(firstVal) + Number(lastVal)) + lastOperator;
+                case '-':
+                    return (Number(firstVal) - Number(lastVal)) + lastOperator;
+                case '*':
+                    return (Number(firstVal) * Number(lastVal)) + lastOperator;
+                case '/':
+                    return (Number(firstVal) / Number(lastVal)) + lastOperator;
+            }
+        });
+
+
     }
 
 
     function cleanCalc() {
         $calc.value = 0;
+    }
+
+    function isLastItemOperator(number) {
+        var operators = ['+', '-', '*', '÷'];
+        var lastItem = number.split('').pop();
+
+        return operators.some(function(operator) {
+            return operator === lastItem;
+        });
+    }
+
+    function removeIfItIsAnOperator(number) {
+        if (isLastItemOperator(number))
+            return number.slice(0, -1);
+
+        return number;
     }
 
 
