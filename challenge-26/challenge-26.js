@@ -25,23 +25,23 @@ Só passe para o próximo problema quando tiver resolvido o anterior :)
 
     function DOM(stringNode) {
         this.element = document.querySelectorAll(stringNode);
-        this.on = function(event, handleEvent) {
-            for (var i = 0; i < this.element.length; i++) {
-                this.element[i].addEventListener(event, handleEvent, false);
-            }
-        }
-        this.off = function(event, handleEvent) {
-            for (var i = 0; i < this.element.length; i++) {
-                this.element[i].removeEventListener(event, handleEvent, false);
-            }
-        }
-        this.get = function() {
-            return this.element;
-        }
+    }
+
+    DOM.prototype.on = function(event, handleEvent) {
+        Array.prototype.forEach.call(this.element, function(element) {
+            element.addEventListener(event, handleEvent, false);
+        });
+    }
+    DOM.prototype.off = function(event, handleEvent) {
+        Array.prototype.forEach.call(this.element, function(element) {
+            element.removeEventListener(event, handleEvent, false);
+        });
+    }
+    DOM.prototype.get = function() {
+        return this.element;
     }
 
     var $a = new DOM('[data-js="link"]');
-    console.log($a);
     $a.on('click', function(e) {
         e.preventDefault();
         console.log('clicou');
