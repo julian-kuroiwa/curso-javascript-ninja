@@ -23,38 +23,6 @@ Crie os seguintes métodos para verificação de tipo:
 O método isNull deve retornar `true` se o valor for null ou undefined.
 */
 
-    function is(obj) {
-        return Object.prototype.slice.call(obj);
-    }
-
-    function isArray(obj) {
-        return is(obj) === '[object Array]';
-    }
-
-    function isObject(obj) {
-        return is(obj) === '[object Object]';
-    }
-
-    function isFunction(obj) {
-        return is(obj) === '[object Function]';
-    }
-
-    function isNumber(obj) {
-        return is(obj) === '[object Number]';
-    }
-
-    function isString(obj) {
-        return is(obj) === '[object String]';
-    }
-
-    function isBoolean(obj) {
-        return is(obj) === '[object Boolean]';
-    }
-
-    function isNull(obj) {
-        return is(obj) === ('[object Null]' || '[object Undefined]');
-    }
-
     function DOM(stringNode) {
         this.element = document.querySelectorAll(stringNode);
     }
@@ -73,32 +41,64 @@ O método isNull deve retornar `true` se o valor for null ou undefined.
         return this.element;
     }
 
-    DOM.prototype.forEach = function(callback) {
-        Array.prototype.forEach.call(this.element, callback);
+    DOM.prototype.forEach = function forEach() {
+        Array.prototype.forEach.apply(this.element, arguments);
     }
 
-    DOM.prototype.map = function(callback) {
-        Array.prototype.map.call(this.element, callback);
+    DOM.prototype.map = function map() {
+        Array.prototype.map.apply(this.element, arguments);
     }
 
-    DOM.prototype.filter = function(callback) {
-        Array.prototype.filter.call(this.element, callback);
+    DOM.prototype.filter = function filter() {
+        Array.prototype.filter.apply(this.element, arguments);
     }
 
-    DOM.prototype.reduce = function(callback) {
-        Array.prototype.reduce.call(this.element, callback);
+    DOM.prototype.reduce = function reduce() {
+        Array.prototype.reduce.apply(this.element, arguments);
     }
 
-    DOM.prototype.reduceRight = function(callback) {
-        Array.prototype.reduceRight.call(this.element, callback);
+    DOM.prototype.reduceRight = function reduceRight() {
+        Array.prototype.reduceRight.apply(this.element, arguments);
     }
 
-    DOM.prototype.every = function(callback) {
-        Array.prototype.every.call(this.element, callback);
+    DOM.prototype.every = function every() {
+        Array.prototype.every.apply(this.element, arguments);
     }
 
-    DOM.prototype.some = function(callback) {
-        Array.prototype.some.call(this.element, callback);
+    DOM.prototype.some = function some() {
+        Array.prototype.some.apply(this.element, arguments);
+    }
+
+    DOM.prototype.is = function is(obj) {
+        return Object.prototype.toString.call(obj);
+    }
+
+    DOM.prototype.isArray = function isArray(obj) {
+        return is(obj) === '[object Array]';
+    }
+
+    DOM.prototype.isObject = function isObject(obj) {
+        return is(obj) === '[object Object]';
+    }
+
+    DOM.prototype.isFunction = function isFunction(obj) {
+        return is(obj) === '[object Function]';
+    }
+
+    DOM.prototype.isNumber = function isNumber(obj) {
+        return is(obj) === '[object Number]';
+    }
+
+    DOM.prototype.isString = function isString(obj) {
+        return is(obj) === '[object String]';
+    }
+
+    DOM.prototype.isBoolean = function isBoolean(obj) {
+        return is(obj) === '[object Boolean]';
+    }
+
+    DOM.prototype.isNull = function isNull(obj) {
+        return is(obj) === ('[object Null]' || '[object Undefined]');
     }
 
     var $a = new DOM('[data-js="link"]');
